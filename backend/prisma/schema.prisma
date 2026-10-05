@@ -1,0 +1,43 @@
+// Prisma schema for UTM Manager Backend
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String         @id @default(cuid())
+  name      String
+  email     String         @unique
+  password  String
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  links     CampaignLink[]
+
+  @@map("users")
+}
+
+model CampaignLink {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  landingPageUrl String
+  source         String
+  medium         String
+  campaign       String
+  content        String?
+  term           String?
+  generatedUrl   String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId])
+  @@index([campaign])
+  @@index([source])
+  @@index([medium])
+  @@map("campaign_links")
+}
