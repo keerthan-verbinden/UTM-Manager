@@ -5,8 +5,8 @@ import {
   getStats,
   getLinkById,
   deleteLink,
-} from '../controllers/linkController.ts';
-import { authenticateToken } from '../middleware/auth.ts';
+} from '../controllers/linkController.js';
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = Router();
 

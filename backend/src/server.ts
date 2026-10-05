@@ -1,5 +1,5 @@
-import { createExpressApp } from "./app.ts";
-import { config } from "./config/index.ts";
+import { createExpressApp } from "./app.js";
+import { config } from "./config/index.js";
 
 const app = createExpressApp();
 const PORT = config.port || 5000;

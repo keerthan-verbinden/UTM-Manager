@@ -1,7 +1,7 @@
 import { Response } from 'express';
-import { AuthRequest } from '../middleware/auth.ts';
-import { dbService } from '../services/db.ts';
-import { generateTrackingUrl } from '../utils/utmNormalizer.ts';
+import { AuthRequest } from '../middleware/auth.js';
+import { dbService } from '../services/db.js';
+import { generateTrackingUrl } from '../utils/utmNormalizer.js';
 
 export const createLink = async (req: AuthRequest, res: Response): Promise<void> => {
   try {

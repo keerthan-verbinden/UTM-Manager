@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { dbService } from '../services/db.ts';
-import { config } from '../config/index.ts';
-import { AuthRequest } from '../middleware/auth.ts';
+import { dbService } from '../services/db.js';
+import { config } from '../config/index.js';
+import { AuthRequest } from '../middleware/auth.js';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {

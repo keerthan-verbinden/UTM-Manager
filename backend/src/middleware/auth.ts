@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { config } from '../config/index.ts';
-import { dbService } from '../services/db.ts';
+import { config } from '../config/index.js';
+import { dbService } from '../services/db.js';
 
 export interface AuthenticatedUser {
   id: string;

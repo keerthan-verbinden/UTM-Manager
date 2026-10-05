@@ -1,6 +1,6 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 import type { User as DbUser, CampaignLink as DbLink } from "@prisma/client";
-import { User, CampaignLink, DashboardStats } from "../types/index.ts";
+import { User, CampaignLink, DashboardStats } from "../types/index.js";
 
 // Reuse one PrismaClient (avoids exhausting connections in dev / hot reload)
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };

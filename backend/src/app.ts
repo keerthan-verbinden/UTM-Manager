@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
-import authRoutes from './routes/authRoutes.ts';
-import linkRoutes from './routes/linkRoutes.ts';
+import authRoutes from './routes/authRoutes.js';
+import linkRoutes from './routes/linkRoutes.js';
 
 export function createExpressApp(): express.Application {
   const app = express();
