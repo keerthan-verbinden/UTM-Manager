@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import { Link2, ArrowRight } from 'lucide-react';
-import { useAuth } from '../context/AuthContext.tsx';
+import React, { useState } from "react";
+import { Link2, ArrowRight } from "lucide-react";
+import { useAuth } from "../context/AuthContext.tsx";
 
 interface LoginPageProps {
   onSwitchToRegister: () => void;
-  showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
+  showToast: (message: string, type?: "success" | "error" | "info") => void;
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister, showToast }) => {
+export const LoginPage: React.FC<LoginPageProps> = ({
+  onSwitchToRegister,
+  showToast,
+}) => {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      setError('Please provide both email and password');
+      setError("Please provide both email and password");
       return;
     }
 
@@ -26,19 +29,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister, showTo
 
     try {
       await login(email, password);
-      showToast('Logged in successfully', 'success');
+      showToast("Logged in successfully", "success");
     } catch (err: any) {
-      setError(err.message || 'Invalid email or password');
-      showToast(err.message || 'Login failed', 'error');
+      setError(err.message || "Invalid email or password");
+      showToast(err.message || "Login failed", "error");
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleDemoFill = () => {
-    setEmail('marketer@agency.com');
-    setPassword('agency1234');
-    setError(null);
   };
 
   return (
@@ -47,7 +44,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister, showTo
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white shadow-sm mb-3">
           <Link2 className="w-6 h-6" />
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-slate-900">UTM Manager</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+          UTM Manager
+        </h2>
         <p className="mt-1 text-sm text-slate-500">
           Sign in to your digital marketing agency workspace
         </p>
@@ -99,7 +98,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister, showTo
               disabled={isLoading}
               className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold shadow-xs transition flex items-center justify-center space-x-2 disabled:opacity-50"
             >
-              <span>{isLoading ? 'Signing in...' : 'Sign in'}</span>
+              <span>{isLoading ? "Signing in..." : "Sign in"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
@@ -112,17 +111,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister, showTo
               className="font-semibold text-blue-600 hover:text-blue-700 transition"
             >
               Register here
-            </button>
-          </div>
-
-          {/* Quick test demo account button */}
-          <div className="mt-4 pt-3 text-center">
-            <button
-              type="button"
-              onClick={handleDemoFill}
-              className="text-[11px] text-slate-400 hover:text-slate-600 transition underline underline-offset-2"
-            >
-              Prefill demo credentials (marketer@agency.com)
             </button>
           </div>
         </div>
